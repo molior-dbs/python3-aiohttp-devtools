@@ -1,5 +1,11 @@
-python3-caio (0.9.13-molior1) stable; urgency=medium
+python3-aiohttp-devtools (1.1-molior2) stable; urgency=medium
 
-  * bump version 0.9.13-molior1
+  * debianize 
 
- -- Dominik Schneider <dominik.schneider@accenture.com>  Mon, 18 Sep 2023 14:45:05 +0200
+ -- Dominik Schneider <dominik.schneider@accenture.com>  Wed, 20 Sep 2023 17:13:55 +0200
+
+python3-aiohttp-devtools (1.1-molior1) stable; urgency=medium
+
+  * bump version 1.1-molior1
+
+ -- Dominik Schneider <dominik.schneider@accenture.com>  Wed, 20 Sep 2023 17:12:18 +0200
