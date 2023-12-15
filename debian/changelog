@@ -1,3 +1,9 @@
+python3-aiohttp-devtools (1.1-molior6) stable; urgency=medium
+
+  * bump version 1.1-molior6
+
+ -- André Roth <neolynx@gmail.com>  Fri, 15 Dec 2023 19:21:10 +0100
+
 python3-aiohttp-devtools (1.1-molior5) stable; urgency=medium
 
   * debian: add missing file
@@ -18,7 +24,7 @@ python3-aiohttp-devtools (1.1-molior3) stable; urgency=medium
 
 python3-aiohttp-devtools (1.1-molior2) stable; urgency=medium
 
-  * debianize 
+  * debianize
 
  -- Dominik Schneider <dominik.schneider@accenture.com>  Wed, 20 Sep 2023 17:13:55 +0200
 
