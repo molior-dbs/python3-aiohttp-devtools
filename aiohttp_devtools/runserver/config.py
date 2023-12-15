@@ -34,6 +34,7 @@ class Config:
                  app_path: str = '.',
                  root_path: Optional[str] = None,
                  verbose: bool = False,
+                 quiet: bool = False,
                  static_path: Optional[str] = None,
                  python_path: Optional[str] = None,
                  static_url: str = '/static/',
@@ -58,6 +59,7 @@ class Config:
         if not self.app_path.name.endswith('.py'):
             raise AdevConfigError('Unexpected extension for app_path: %s, should be .py' % self.app_path.name)
         self.verbose = verbose
+        self.quiet = quiet
         self.settings_found = False
 
         self.py_file = self._resolve_path(str(self.app_path), 'is_file', 'app-path')

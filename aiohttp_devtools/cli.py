@@ -24,6 +24,7 @@ def cli() -> None:
 
 
 verbose_help = 'Enable verbose output.'
+quiet_help = 'Do not show detail output.'
 livereload_help = ('Whether to inject livereload.js into html page footers to autoreload on changes. '
                    'env variable AIO_LIVERELOAD')
 browser_cache_help = ("When disabled (the default), sends no-cache headers to "
@@ -35,13 +36,14 @@ browser_cache_help = ("When disabled (the default), sends no-cache headers to "
 @click.option('--livereload/--no-livereload', envvar='AIO_LIVERELOAD', default=True, help=livereload_help)
 @click.option('-p', '--port', default=8000, type=int)
 @click.option('-v', '--verbose', is_flag=True, help=verbose_help)
+@click.option('-q', '--quiet', is_flag=True, help=quiet_help)
 @click.option("--browser-cache/--no-browser-cache", envvar="AIO_BROWSER_CACHE", default=False,
               help=browser_cache_help)
-def serve(path: str, livereload: bool, port: int, verbose: bool, browser_cache: bool) -> None:
+def serve(path: str, livereload: bool, port: int, verbose: bool, quiet: bool, browser_cache: bool) -> None:
     """
     Serve static files from a directory.
     """
-    setup_logging(verbose)
+    setup_logging(verbose, quiet)
     run_app(**serve_static(static_path=path, livereload=livereload, port=port,
                            browser_cache=browser_cache))
 
@@ -78,6 +80,7 @@ aux_port_help = 'Port to serve auxiliary app (reload and static) on, default por
 @click.option('-p', '--port', 'main_port', envvar='AIO_PORT', type=click.INT, help=port_help)
 @click.option('--aux-port', envvar='AIO_AUX_PORT', type=click.INT, help=aux_port_help)
 @click.option('-v', '--verbose', is_flag=True, help=verbose_help)
+@click.option('-q', '--quiet', is_flag=True, help=quiet_help)
 @click.option("--browser-cache/--no-browser-cache", envvar="AIO_BROWSER_CACHE", default=None,
               help=browser_cache_help)
 @click.argument('project_args', nargs=-1)
@@ -92,7 +95,7 @@ def runserver(**config: Any) -> None:
     module.
     """
     active_config = {k: v for k, v in config.items() if v is not None}
-    setup_logging(config['verbose'])
+    setup_logging(config['verbose'], config['quiet'])
     # Rewrite argv for the application.
     sys.argv[1:] = active_config.pop('project_args')
     try:

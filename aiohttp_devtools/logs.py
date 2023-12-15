@@ -57,6 +57,7 @@ class AccessFormatter(logging.Formatter):
     def __init__(self, fmt: Optional[str] = None, datefmt: Optional[str] = None, style: Literal["%", "{", "$"] = "%"):
         super().__init__(fmt, datefmt, style)
         self.stream_is_tty = False
+        self.log_quiet = False
 
     def formatMessage(self, record: logging.LogRecord) -> str:
         msg = super().formatMessage(record)
@@ -74,7 +75,7 @@ class AccessFormatter(logging.Formatter):
         else:
             msg = '{time} {prefix} {msg}'.format(**obj)
         details = getattr(record, 'details', None)
-        if details:
+        if not self.log_quiet and details:
             msg = 'details: {}\n{}'.format(pformat(details, highlight=self.stream_is_tty), msg)
         return msg
 
@@ -98,7 +99,7 @@ class HighlightStreamHandler(logging.StreamHandler):  # type: ignore[type-arg]
         self.formatter = fmt
 
 
-def log_config(verbose: bool) -> Dict[str, object]:
+def log_config(verbose: bool, log_quiet: bool) -> Dict[str, object]:
     """
     Setup default config. for dictConfig.
     :param verbose: level: DEBUG if True, INFO if False
@@ -121,6 +122,7 @@ def log_config(verbose: bool) -> Dict[str, object]:
             'aiohttp': {
                 'format': '%(message)s',
                 'class': 'aiohttp_devtools.logs.AccessFormatter',
+                'log_quiet': log_quiet
             },
         },
         'handlers': {
@@ -174,6 +176,6 @@ def log_config(verbose: bool) -> Dict[str, object]:
     }
 
 
-def setup_logging(verbose: bool) -> None:
-    config = log_config(verbose)
+def setup_logging(verbose: bool, log_quiet: bool = False) -> None:
+    config = log_config(verbose, log_quiet)
     logging.config.dictConfig(config)
