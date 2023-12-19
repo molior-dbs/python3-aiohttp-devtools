@@ -1,3 +1,13 @@
+python3-aiohttp-devtools (1.1-molior10) stable; urgency=medium
+
+  * python3-aiohttp-devtools: release 1.1-molior9
+  * fix quiet argument
+  * build(deps): bump pytest from 6.2.5 to 7.4.3 (#10)
+  * build(deps): bump coverage from 7.3.1 to 7.3.3 (#12)
+  * build(deps): bump pytest-asyncio from 0.20.3 to 0.23.2 (#9)
+
+ -- André Roth <neolynx@gmail.com>  Tue, 19 Dec 2023 14:35:26 +0100
+
 python3-aiohttp-devtools (1.1-molior9) stable; urgency=medium
 
   * fix quiet argument
