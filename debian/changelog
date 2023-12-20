@@ -1,5 +1,5 @@
-python3-caio (0.9.13-molior1) stable; urgency=medium
+python3-aiohttp-devtools (1.1-1) stable; urgency=medium
 
-  * bump version 0.9.13-molior1
+  * build for debian bookworm
 
- -- Dominik Schneider <dominik.schneider@accenture.com>  Mon, 18 Sep 2023 14:45:05 +0200
+ -- André Roth <neolynx@gmail.com>  Wed, 20 Dec 2023 13:43:55 +0100
