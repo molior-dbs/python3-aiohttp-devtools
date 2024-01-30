@@ -1,4 +1,4 @@
-aiohttp==3.9.2
+aiohttp==3.9.3
 click==8.1.7
 coverage==7.4.1
 devtools==0.12.2
